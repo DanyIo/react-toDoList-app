@@ -1,7 +1,6 @@
 import * as React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
-
 import Fab from "@mui/material/Fab";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
@@ -18,6 +17,7 @@ export class Main extends React.Component {
     this.setState((prevState) => {
       const task = {
         text: this.state.toDOText,
+        isDone: false,
       };
       const newToDoList = prevState.toDoList.slice();
       newToDoList.push(task);
@@ -38,11 +38,19 @@ export class Main extends React.Component {
       };
     });
   };
+
   addCheckedClassName = (event) => {
     if (event.target.type !== "button" && event.target.type !== undefined) {
-      return event.target.className === "checked"
-        ? (event.target.className = "unchecked")
-        : (event.target.className = "checked");
+      const newStatus = !this.state.toDoList[event.target.id].isDone;
+      console.log(newStatus);
+      this.setState((prevState) => {
+        const copyToDoList = [...prevState.toDoList];
+        copyToDoList[event.target.id].isDone = newStatus;
+        return {
+          ...prevState,
+          toDoList: copyToDoList,
+        };
+      });
     }
   };
   addToDOText = (event) => {
@@ -72,7 +80,7 @@ export class Main extends React.Component {
               <li
                 id={index}
                 key={`${el.text}_${index}`}
-                className={this.state.toDoList[index].className}
+                className={el.isDone ? "checked" : "unchecked"}
                 onClick={this.addCheckedClassName}
               >
                 {el.text}
