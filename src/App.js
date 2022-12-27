@@ -1,9 +1,9 @@
-import './App.css';
-import { Main } from './containers/main';
+import "./App.css";
+import { Main } from "./containers/main";
 function App() {
   return (
     <div className="App">
-      <Main/>
+      <Main />
     </div>
   );
 }
