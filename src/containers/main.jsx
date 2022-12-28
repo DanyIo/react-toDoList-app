@@ -42,8 +42,7 @@ export class Main extends React.Component {
   addCheckedClassName = (event) => {
     if (event.target.type !== "button" && event.target.type !== undefined) {
       const newStatus = !this.state.toDoList[event.target.id].isDone;
-      console.log(newStatus);
-      this.setState((prevState) => {
+      this.setState((prevState) => {  
         const copyToDoList = [...prevState.toDoList];
         copyToDoList[event.target.id].isDone = newStatus;
         return {
@@ -54,7 +53,9 @@ export class Main extends React.Component {
     }
   };
   addToDOText = (event) => {
-    this.setState({ toDOText: event.target.value });
+    if(event.target.value.length !== 21){
+      this.setState({ toDOText: event.target.value });
+    }
   };
   render() {
     return (
