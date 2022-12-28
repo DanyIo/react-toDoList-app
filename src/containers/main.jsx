@@ -53,7 +53,7 @@ export class Main extends React.Component {
     }
   };
   addToDOText = (event) => {
-    if(event.target.value.length !== 21){
+    if(event.target.value.length !== 32){
       this.setState({ toDOText: event.target.value });
     }
   };
