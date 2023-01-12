@@ -71,7 +71,7 @@ export class Main extends React.Component {
           variant="extended"
           className="addButton"
           onClick={this.addTask}
-          disabled={this.state.toDOText === "" ? true : false}
+          disabled={this.state.toDOText.trim() === "" ? true : false}
         >
           Add
         </FabStyled>
